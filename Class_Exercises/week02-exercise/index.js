@@ -32,6 +32,7 @@ console.log(req.query);
 res.send("Sending back to get request")
 
 }
+// adding comment to test Github commit
 // app.get("/", requestHandler);
 
 // function requestHandler(req, res){
