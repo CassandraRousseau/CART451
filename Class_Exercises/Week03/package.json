@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "express": "^4.18.2",
-    "image-data-uri": "^2.0.1",
-    "node-static": "^0.7.11",
-    "static": "^2.0.0",
-    "ws": "^8.14.2"
-  }
-}
