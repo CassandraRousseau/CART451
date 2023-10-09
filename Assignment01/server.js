@@ -13,34 +13,53 @@ app.use("/client", clientRoute);
 
 
 require("dotenv").config();  
+// console.log(process.env) 
 
 const { MongoClient } = require('mongodb');
-const url = process.env.MONGO_DB_URI
+const url = process.env.MONGO_DB_URI;
 // Database Name
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(url, {});
+
+
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
-    client.connect().then((res)=>{
- 
-// A:
-    const database = client.db("CART451_Final_Project");
-    const shipwrecks = database.collection("YouTube");
+    
+    await client.connect();
+    await client.db("admin").command({ping:1});
+    // console.log("success");
+    
+    const db = await client.db("CART451_Final_Project");
+    const videos = await db.collection("youtube_videos");
 
-    // the callback
-    //ADD
-   let handlePost = async function (request,response){
-    console.log(request.body);
-  
-  }
+    let answer = videos.collection.totalSize();
+console.log(answer);
+// Counts the number of input in the collection
+    const estimate = await videos.estimatedDocumentCount();
+    console.log(`Estimated number of documents in the videos collection: ${estimate}`);
+    
+    // Display all the data in the console
+let results = await videos.find({}).toArray();
+console.log(results);
 
-     /// use this VERB for getting posted data... 9
-     app.use('/postForm',handlePost);
-})
+// Find one video according to the inputed data catregories
+    const options = {
 
+      projection: {'description':1, 'category':1}
+    }
+    let isInGroup = await videos.findOne({'category':{$in:["beauty","vlogs", "travel", "food"]}}, options)
+    console.log(isInGroup);
 
+// Retrieves data
+    const yt_video = "title";
+    // Specify an optional query document to narrow results
+    const content = { category: "history" };
+    // Execute the distinct operation
+    const distinctValues = await videos.distinct(yt_video, content);
+
+    // Print the result
+    console.log(distinctValues);
 
 } // in try 
 catch (error) {
@@ -76,7 +95,5 @@ function clientRoute(req, res, next) {
   res.sendFile(__dirname + "/public/client.html");
 }
 
-
- 
 
 
