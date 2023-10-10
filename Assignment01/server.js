@@ -86,20 +86,20 @@ for await (const doc of filteredResults){
   console.log("mission achieved");
 }
 
-// // **7** Find the food category videos, sort in alphabetical order the results, and limit the results to 5 videos
-// const neededDocuments = {category:"food"}
-// let foundResults = await videos.find(neededDocuments).sort({title:1}).limit(5);
-// await foundResults.forEach((doc)=>console.log(doc));
-// console.log('Found ${await docCounting} documents');
+// **7** Find the food category videos, sort in alphabetical order the results, and limit the results to 5 videos
+const neededDocuments = {category:"food"}
+let foundResults = await videos.find(neededDocuments).sort({title:1}).limit(5);
+await foundResults.forEach((doc)=>console.log(doc));
+console.log('Found ${await docCounting} documents');
 
 
-// //**8**Find one video according to the inputed data categories
-// const options = {
+//**8**Find one video according to the inputed data categories
+const options = {
 
-//   projection: {'description':1, 'category':1}
-// }
-// let isInGroup = await videos.findOne({'category':{$in:["beauty","vlogs", "travel", "food"]}}, options)
-// console.log(isInGroup);
+  projection: {'description':1, 'category':1}
+}
+let isInGroup = await videos.findOne({'category':{$in:["beauty","vlogs", "travel", "food"]}}, options)
+console.log(isInGroup);
 
 
 } // in try 
