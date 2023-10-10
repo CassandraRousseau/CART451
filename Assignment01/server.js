@@ -33,8 +33,6 @@ async function run() {
     const db = await client.db("CART451_Final_Project");
     const videos = await db.collection("youtube_videos");
 
-    let answer = videos.collection.totalSize();
-console.log(answer);
 // Counts the number of input in the collection
     const estimate = await videos.estimatedDocumentCount();
     console.log(`Estimated number of documents in the videos collection: ${estimate}`);
@@ -61,6 +59,15 @@ console.log(results);
     // Print the result
     console.log(distinctValues);
 
+    // let unwound = await videos.aggregate([ 
+    //   $text: {
+    //     $search: "pasta",
+    //     $caseSensitive: true
+    //   }]);
+    // console.log(unwound);
+    let findings = await videos.find( { $text: { $search: "coffee shop" } } );
+
+    console.log(findings);
 } // in try 
 catch (error) {
     console.error("error::");
