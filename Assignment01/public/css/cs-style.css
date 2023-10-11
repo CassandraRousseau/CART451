@@ -7,12 +7,9 @@ h3{
   margin-top:3vh;
   color:#8f246b;
 }
-input[type='text']{
-    display:block;
-    width:80%;
-    margin-bottom:10px;
-    font-size:12px;
-  }
+p{
+  
+}
   input[type='button']{
     font-size:12px;
     }
@@ -24,16 +21,19 @@ input[type='text']{
     
       }
       
-      .addIn,.searchDiv{
+      .searchDiv{
         background:#b82e8a;
         border: 1px solid  #ebadd6;
-        width:40%;
+        width:80%;
         padding:1%;
         height:min-content;
       }
-      .addIn p, .searchDiv p {
+     .searchDiv p {
         color:#ffffff;
+        width:80%;
         font-size:18px;
+text-align: center;
+margin-left: 8%;
       }
  
 

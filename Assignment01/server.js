@@ -32,10 +32,11 @@ async function run() {
         console.log(req.query);
         // MUST set up an index
         let r = await videos.createIndex({ category: 1 });
-      
+        let search = await videos.createIndex({ description: 1 });
+        let s = await videos.createIndex({ title: 1 });
         /* using the mongo $geonear:
         we can filter results based on thre location coordinates ...*/
-        let responseArray = await videos.aggregate([
+        let responseArt = await videos.aggregate([
             {$match: {description: {$lte:"400"}}},
               {$sort:{description:1}},
               {$project:{
@@ -49,17 +50,24 @@ async function run() {
       // const pipeline = [ ]
         
       //   let filteredResults = await videos.aggregate(pipeline)
-        
-      //   for await (const doc of filteredResults){
-      //     console.log(doc);
-      //     console.log("mission achieved");
-      //   }
-        
-        console.log(responseArray);
-        res.send(responseArray);
-        console.log("request completed")
+  
+
+//     // **6** Filter the art and music video category by displaying only the videos with less or equal than 400 subscribers on the channel, and only display their title and descriptions
+// const pipeline = [ ]
+
+//   let filteredResults = await videos.aggregate(pipeline)
+for await (const doc of responseArt){
+  console.log(doc);
+  console.log("art achieved");
+}
+
+console.log(responseArt);
+  
+    res.send(responseArt);
+    console.log("art completed")
+
       };
-      
+
       //3:: receiving serach criteria from the client
       app.use("/sendSearch", getSearchCrit);
       });
