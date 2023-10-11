@@ -36,7 +36,7 @@ async function run() {
         /* using the mongo $geonear:
         we can filter results based on thre location coordinates ...*/
         let responseArray = await videos.aggregate([
-            {$match: {category:"art_music", description: {$lte:"400"}}},
+            {$match: {description: {$lte:"400"}}},
               {$sort:{description:1}},
               {$project:{
                 _id:0,

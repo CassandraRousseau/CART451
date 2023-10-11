@@ -9,6 +9,7 @@ window.onload = function () {
     let  response = await fetch(`http://localhost:4200/sendSearch?${new URLSearchParams(search)}`);
     console.log("the response::: ")
     console.log(await response.json());
+    // console.log(await response.body);
 });//click
 
  
