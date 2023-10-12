@@ -3,25 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <title>Assignment 01</title>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/cs-style.css" />
  
     <script src="js/client.js"></script>
+    
   </head>
 
   <body>
     
-<h2>Discover a YouTube Video!</h2>
+<h2>Discover YouTube Videos!</h2>
 <div id = "parentContainer">
 <div class = "searchDiv">
-  <input type="button" value="Find a video about art!" class="findData" id="search_art"/>
-  <input type="button" value="Find a video about food!" class="findData" id="search_food"/>
-  <input type="button" value="Find a video about history!" class="findData" id="search_hist"/>
-  
+  <p>If you want to access this secret video collection, you need to answer this question:</p>
+  <p>Before creating YouTube, in which company Jawed Karim, Steve Chen, and Chad Hurley worked?</p>
+  <input type="text" id="user-string-A" value="Type answer here" />
+  <button value="Find a video about art!" class="findData" id="search">Send answer</button>
 </div>
-<div id = "results" class = 'searchDiv'> Here are the videos! </div>
+  <div class="searchDiv" id="responseA"> </div>
+  <div class="searchDiv" id="responseB"></div>
+  <div class="searchDiv" id="responseC"></div>
+  <div class="searchDiv" id="responseD"></div>
+  <div class="searchDiv" id="responseE"></div>
 </div>
   </body>
 </html>
