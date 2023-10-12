@@ -36,8 +36,13 @@ async function run() {
         let s = await videos.createIndex({ title: 1 });
         /* using the mongo $geonear:
         we can filter results based on thre location coordinates ...*/
-        let responseArt = await videos.aggregate([
-            {$match: {description: {$lte:"400"}}},
+        const buttonCallA = document.querySelector("#search_art");
+  const buttonCallB = document.querySelector('#search_food');
+  const buttonCallC = document.querySelector("#search_hist");
+        
+  if(buttonCallA.isClicked()){
+          let responseArt = await videos.aggregate([
+            {$match: {category:"art_music", description: {$lte:"400"}}},
               {$sort:{description:1}},
               {$project:{
                 _id:0,
@@ -45,7 +50,32 @@ async function run() {
               category:0,
               },}
           ]).toArray();
+
+        }
+       else if(buttonCallB.isClicked){
+        let responseFood = await videos.aggregate([
+          {$match: {category:"food", description: {$lte:"400"}}},
+            {$sort:{description:1}},
+            {$project:{
+              _id:0,
+              link:0,
+            category:0,
+            },}
+        ]).toArray();
+       }else if(buttonCallC.isClicked()){
+        let responseHist = await videos.aggregate([
+          {$match: {category:"history", description: {$lte:"900"}}},
+            {$sort:{description:1}},
+            {$project:{
+              _id:0,
+              link:0,
+            category:0,
+            },}
+        ]).toArray();
+       }
       
+       res.send(responseFood,responseArt,responseHist);
+          
       //     // **6** Filter the art and music video category by displaying only the videos with less or equal than 400 subscribers on the channel, and only display their title and descriptions
       // const pipeline = [ ]
         
@@ -55,16 +85,15 @@ async function run() {
 //     // **6** Filter the art and music video category by displaying only the videos with less or equal than 400 subscribers on the channel, and only display their title and descriptions
 // const pipeline = [ ]
 
-//   let filteredResults = await videos.aggregate(pipeline)
-for await (const doc of responseArt){
-  console.log(doc);
-  console.log("art achieved");
-}
+// //   let filteredResults = await videos.aggregate(pipeline)
+// for await (const doc of responseArt){
+//   console.log(doc);
+//   console.log("art achieved");
+// }
 
-console.log(responseArt);
-  
-    res.send(responseArt);
-    console.log("art completed")
+// console.log(responseArt);
+
+    console.log("completed")
 
       };
 
