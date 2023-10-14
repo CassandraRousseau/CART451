@@ -32,7 +32,7 @@ async function run() {
         let search = await videos.createIndex({ description: 1 });
         let s = await videos.createIndex({ title: 1 });
           let responseArt = await videos.aggregate([
-            {$match: {category:"art_music", description: {$lte:"400"}}},
+            {$match: {category: JSON.parse("art_music"), description: JSON.parse({$lte:"400"})}},
               {$sort:{description:1}},
               {$project:{
                 _id:0,
