@@ -6,16 +6,6 @@ const responseB = document.querySelector("#responseB");
 const responseC = document.querySelector("#responseC");
 const responseD = document.querySelector("#responseD");
 const responseE = document.querySelector("#responseE");
-//     const results = document.getElementById("results");
-
-//     let responseText = await response.text();
-    // results.innerHTML = responseText;
-//     // Add a blank space between each line of the response text
-
-// console.log("the response::: ", responseText);
-
-// results.innerHTML = responseText;
-
 //   });//click
   function getJSONFromServerUsingFetch(fileNameLink) {
     // use ES6 fetch API, which return a promise
@@ -44,7 +34,7 @@ function checkAuth_A(userString) {
       .then(
         function (resultFromFetchA) {
           console.log(resultFromFetchA);
-          let sRes =  JSON.parse(resultFromFetchA);
+          let sRes =  resultFromFetchA;
           responseA.innerHTML = sRes;
           var imgA = document.createElement("img"); 
           imgA.src = "images/pop.jpg"; 
@@ -66,7 +56,7 @@ function checkAuth_A(userString) {
                a.href = "https://www.youtube.com/watch?v=TWZKw_MgUPI&ab_channel=NSYNCVEVO";  
                  
                // Append the anchor element to the body. 
-               srcA.appendChild(a);  
+               srcA.appendChild(a).style.;  
           console.log("works")
           return  getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams()}`+resultFromFetchA.linkToNext)
       }) .then(
