@@ -30,93 +30,76 @@ function checkAuth_A(userString) {
       .then(
         function (resultFromFetchA) {
           console.log(resultFromFetchA);
-          let sRes =  resultFromFetchA;
-
-          for(let i=0; i<sRes.length;i++){
-
-          
-          var imgA = document.createElement("img"); 
-          imgA.src = "images/pop.jpg"; 
-          var srcA = document.getElementById("responseA"); 
-          srcA.appendChild(imgA);
-               // Create anchor element. 
-               var a_n = document.createElement('a');  
+          let sResA =  resultFromFetchA;
+          for(let i=0; i<sResA.length;i++){
+            var srcA = document.getElementById("responseA"); 
+            const imgA = [
+              'images/pop.jpg',
+              'images/private.png',
+              'images/123go.jpg',
+              'images/private.png',
+              'images/deleted.jpg'
+                      ];
+               
+                      imgA.forEach(image => {
+                          const img = document.createElement('img');
+                          img.src = image;
+                          img.innerHTML = imgA[i];  
+                          srcA.appendChild(img);
+                          var YTtitleA = document.createElement('p');  
+                          // Set the title. 
+                          YTtitleA.innerHTML = sResA[i].title;  
+                          srcA.appendChild(YTtitleA);   
+                               
+               var YTdescriptionA = document.createElement('p');  
+               // Set the title. 
+               YTdescriptionA.innerHTML = sResA[i].description;  
+               srcA.appendChild(YTdescriptionA);  
+                  //  // Create anchor element. 
+              //  var c_n = document.createElement('a');  
                   
-               // Create the text node for anchor element. 
-               var link_n = document.createTextNode(sRes[i].link); 
+              //  // Create the text node for anchor element. 
+              //  var linkC_n = document.createTextNode(srcC[i].link); 
                  
-               // Append the text node to anchor element. 
-               a_n.appendChild(link_n); 
-               srcA.appendChild(a_n);   
+              //  // Append the text node to anchor element. 
+              //  c_n.appendChild(linkC_n); 
+              //  srcC.appendChild(c_n);   
 
-               var YTtitle = document.createElement('p');  
-               // Set the title. 
-               YTtitle.innerHTML = sRes[i].title;  
-               srcA.appendChild(YTtitle);   
+                      })
+          
+           
+           
                
-               
-               var YTdescription = document.createElement('p');  
-               // Set the title. 
-               YTdescription.innerHTML = sRes[i].description;  
-               srcA.appendChild(YTdescription);   
-               
-                //  a_n.description = sRes[i].description;  
-               // Set the href property. 
-              //  a_n.href = "#";  
-                 
-               // Append the anchor element to the body. 
+           
 
-
-          console.log("works")
-          }});
-       
-      //     var imgB = document.createElement("img"); 
-      //     imgB.src = "images/private.png"; 
-      //     var srcB = document.getElementById("responseB"); 
-      //     srcB.appendChild(imgB);
-      //    
-        //     var imgC = document.createElement("img"); 
-        //     imgC.src = "images/123go.jpg"; 
-        //     var srcC = document.getElementById("responseC"); 
-        //     srcC.appendChild(imgC);
-        //   
-        //       var imgD = document.createElement("img"); 
-        //       imgD.src = "images/private.png"; 
-        //       var srcD = document.getElementById("responseD"); 
-        //       srcD.appendChild(imgD);
-        //       
-        //         var imgE = document.createElement("img"); 
-        //         imgE.src = "images/deleted.jpg"; 
-        //         var srcE = document.getElementById("responseE"); 
-        //         srcE.appendChild(imgE);
-        //       
-    } else if(userString === "history"){
-      // answer = "You're close!! You just need to write it with its right spelling:)";
-      // let almostThere = answer;
-      // responseA.innerHTML = almostThere;
-
+    }
+  }) }else if(userString === "history"){
+   
       getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams({label:"history"})}`)
       .then(
         function (resultFromFetchB) {
           console.log(resultFromFetchB);
           let sResB =  resultFromFetchB;
-          // responseA.innerHTML = sRes;
           for(let i=0; i<sResB.length;i++){
-
-          
-          // var imgA = document.createElement("img"); 
-          // imgA.src = "images/pop.jpg"; 
+            var srcB = document.getElementById("responseA"); 
+     var imgB = document.createElement("img"); 
+          imgB.src = "images/deleted.jpg"; 
           var srcB = document.getElementById("responseA"); 
-          // srcA.appendChild(imgA);
-               // Create anchor element. 
-               var b_n = document.createElement('a');  
+          srcB.appendChild(imgB);
                   
-               // Create the text node for anchor element. 
-               var linkB_n = document.createTextNode(sResB[i].link); 
+              //  // Create anchor element. 
+              //  var b_n = document.createElement('a');  
+                  
+              //  // Create the text node for anchor element. 
+              //  var linkB_n = document.createTextNode(sResB[i].link); 
                  
-               // Append the text node to anchor element. 
-               b_n.appendChild(linkB_n); 
-               srcB.appendChild(b_n);   
+              //  // Append the text node to anchor element. 
+              //  b_n.appendChild(linkB_n); 
+              //  srcB.appendChild(b_n);   
+              var linkB = document.createElement('p');  
+              // Set the title. 
+              linkB.innerHTML = sResB[i].link;  
+              srcB.appendChild(linkB);   
 
                var YTtitleB = document.createElement('p');  
                // Set the title. 
@@ -141,13 +124,19 @@ function checkAuth_A(userString) {
           console.log(resultFromFetchC);
           let sResC =  resultFromFetchC;
           for(let i=0; i<sResC.length;i++){
-
-          
-          // var imgA = document.createElement("img"); 
-          // imgA.src = "images/pop.jpg"; 
-          var srcC = document.getElementById("responseA"); 
-          // srcA.appendChild(imgA);
-               // Create anchor element. 
+            var srcC = document.getElementById("responseA"); 
+            const imgC = [
+              'images/deleted.jpg',
+              'images/mealworms.jpg',
+              'images/deleted.jpg'
+                      ];
+               
+                      imgC.forEach(image => {
+                          const img = document.createElement('img');
+                          img.src = image;
+                          img.innerHTML = imgC[i];  
+                          srcC.appendChild(img);
+                            //  // Create anchor element. 
               //  var c_n = document.createElement('a');  
                   
               //  // Create the text node for anchor element. 
@@ -156,6 +145,10 @@ function checkAuth_A(userString) {
               //  // Append the text node to anchor element. 
               //  c_n.appendChild(linkC_n); 
               //  srcC.appendChild(c_n);   
+              var linkC = document.createElement('p');  
+              // Set the title. 
+              linkC.innerHTML = sResC[i].link;  
+              srcC.appendChild(linkC); 
 
                var YTtitleC = document.createElement('p');  
                // Set the title. 
@@ -167,13 +160,12 @@ function checkAuth_A(userString) {
                // Set the title. 
                YTdescriptionC.innerHTML = sResC[i].description;  
                srcC.appendChild(YTdescriptionC);   
+                      })
+          
+            
 
     }}) }
     else if(userString === "travel"){
-      // answer = "You're close!! You just need to write it with its right spelling:)";
-      // let almostThere = answer;
-      // responseA.innerHTML = almostThere;
-
       getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams({label:"travel"})}`)
       .then(
         function (resultFromFetchD) {
@@ -181,21 +173,32 @@ function checkAuth_A(userString) {
           let sResD =  resultFromFetchD;
           // responseA.innerHTML = sRes;
           for(let i=0; i<sResD.length;i++){
-
-          
-          // var imgA = document.createElement("img"); 
-          // imgA.src = "images/pop.jpg"; 
-          var srcD = document.getElementById("responseA"); 
-          // srcA.appendChild(imgA);
-               // Create anchor element. 
-               var d_n = document.createElement('a');  
+            var srcD = document.getElementById("responseA"); 
+            const imgD = [
+              'images/purulia.jpg',
+              'images/alaska.jpg',
+              'images/200.jpg'
+                      ];
+               
+                      imgD.forEach(image => {
+                          const img = document.createElement('img');
+                          img.src = image;
+                          img.innerHTML = imgD[i];  
+                          srcD.appendChild(img);
+                          //  // Create anchor element. 
+              //  var d_n = document.createElement('a');  
                   
-               // Create the text node for anchor element. 
-               var linkD_n = document.createTextNode(sResD[i].link); 
+              //  // Create the text node for anchor element. 
+              //  var linkD_n = document.createTextNode(sResD[i].link); 
                  
-               // Append the text node to anchor element. 
-               d_n.appendChild(linkD_n); 
-               srcD.appendChild(d_n);   
+              //  // Append the text node to anchor element. 
+              //  d_n.appendChild(linkD_n); 
+              //  srcD.appendChild(d_n);   
+
+              var linkD = document.createElement('p');  
+              // Set the title. 
+              linkD.innerHTML = sResD[i].link;  
+              srcD.appendChild(linkD); 
 
                var YTtitleD = document.createElement('p');  
                // Set the title. 
@@ -207,10 +210,12 @@ function checkAuth_A(userString) {
                // Set the title. 
                YTdescriptionD.innerHTML = sResD[i].description;  
                srcD.appendChild(YTdescriptionD);   
+                      })
+              
 
     }}) }
     else {
-      answer = "Wrong answer, try again";
+      answer = "Error, try again (you need to type the words without caps)";
     let wrongAnswer = answer;
     responseA.innerHTML = wrongAnswer;
     }
