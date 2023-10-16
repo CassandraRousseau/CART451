@@ -45,6 +45,15 @@ function checkAuth_A(userString) {
                           img.src = image;
                           img.innerHTML = imgA[i];  
                           srcA.appendChild(img);
+                               //  // Create anchor element. 
+               var a_n = document.createElement('a');  
+                  
+               //  // Create the text node for anchor element. 
+                var linkA = document.createTextNode(srcA[i].link); 
+                  
+               //  // Append the text node to anchor element. 
+               a_n.appendChild(linkA); 
+               srcA.appendChild(a_n);   
                           var YTtitleA = document.createElement('p');  
                           // Set the title. 
                           YTtitleA.innerHTML = sResA[i].title;  
@@ -54,23 +63,10 @@ function checkAuth_A(userString) {
                // Set the title. 
                YTdescriptionA.innerHTML = sResA[i].description;  
                srcA.appendChild(YTdescriptionA);  
-                  //  // Create anchor element. 
-              //  var c_n = document.createElement('a');  
-                  
-              //  // Create the text node for anchor element. 
-              //  var linkC_n = document.createTextNode(srcC[i].link); 
-                 
-              //  // Append the text node to anchor element. 
-              //  c_n.appendChild(linkC_n); 
-              //  srcC.appendChild(c_n);   
+             
 
                       })
-          
-           
-           
-               
-           
-
+      
     }
   }) }else if(userString === "history"){
    
@@ -113,9 +109,6 @@ function checkAuth_A(userString) {
 
     }}) }
     else if(userString === "food"){
-      // answer = "You're close!! You just need to write it with its right spelling:)";
-      // let almostThere = answer;
-      // responseA.innerHTML = almostThere;
 
       getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams({label:"food"})}`)
       .then(
