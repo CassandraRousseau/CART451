@@ -2,10 +2,6 @@ window.onload = function () {
   console.log("we are loaded");
   const buttonCall = document.querySelector("#search");
   const responseA = document.querySelector("#responseA");
-const responseB = document.querySelector("#responseB");
-const responseC = document.querySelector("#responseC");
-const responseD = document.querySelector("#responseD");
-const responseE = document.querySelector("#responseE");
 //   });//click
   function getJSONFromServerUsingFetch(fileNameLink) {
     // use ES6 fetch API, which return a promise
@@ -13,169 +9,207 @@ const responseE = document.querySelector("#responseE");
     then(function(r) 
     { 
       //what is returned here is ALSO A PROMISE 
-      return r.text()
+      return r.json()
     })
   }
 
   buttonCall.addEventListener("click", function () {
     console.log("clicked");
-    let returnedFruit = checkAuth_A(
+    let returnedSearch = checkAuth_A(
       document.querySelector("#user-string-A").value
     );
-    changeString_A(returnedFruit);
+    changeString_A(returnedSearch);
     });
   
 
 function checkAuth_A(userString) {
   setTimeout(() => {
     let answer = "";
-    if (userString === "PayPal") {
-      getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams()}`)
+    if (userString === "art") {
+      getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams({label:"art"})}`)
       .then(
         function (resultFromFetchA) {
           console.log(resultFromFetchA);
           let sRes =  resultFromFetchA;
-          responseA.innerHTML = sRes;
+
+          for(let i=0; i<sRes.length;i++){
+
+          
           var imgA = document.createElement("img"); 
           imgA.src = "images/pop.jpg"; 
           var srcA = document.getElementById("responseA"); 
           srcA.appendChild(imgA);
                // Create anchor element. 
-               var a = document.createElement('a');  
+               var a_n = document.createElement('a');  
                   
                // Create the text node for anchor element. 
-               var link = document.createTextNode("NSYNC - Pop (Official HD Video)"); 
+               var link_n = document.createTextNode(sRes[i].link); 
                  
                // Append the text node to anchor element. 
-               a.appendChild(link);  
-                 
+               a_n.appendChild(link_n); 
+               srcA.appendChild(a_n);   
+
+               var YTtitle = document.createElement('p');  
                // Set the title. 
-               a.title = "NSYNC - Pop (Official HD Video)";  
-                 
+               YTtitle.innerHTML = sRes[i].title;  
+               srcA.appendChild(YTtitle);   
+               
+               
+               var YTdescription = document.createElement('p');  
+               // Set the title. 
+               YTdescription.innerHTML = sRes[i].description;  
+               srcA.appendChild(YTdescription);   
+               
+                //  a_n.description = sRes[i].description;  
                // Set the href property. 
-               a.href = "https://www.youtube.com/watch?v=TWZKw_MgUPI&ab_channel=NSYNCVEVO";  
+              //  a_n.href = "#";  
                  
                // Append the anchor element to the body. 
-               srcA.appendChild(a).style.;  
+
+
           console.log("works")
-          return  getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams()}`+resultFromFetchA.linkToNext)
-      }) .then(
+          }});
+       
+      //     var imgB = document.createElement("img"); 
+      //     imgB.src = "images/private.png"; 
+      //     var srcB = document.getElementById("responseB"); 
+      //     srcB.appendChild(imgB);
+      //    
+        //     var imgC = document.createElement("img"); 
+        //     imgC.src = "images/123go.jpg"; 
+        //     var srcC = document.getElementById("responseC"); 
+        //     srcC.appendChild(imgC);
+        //   
+        //       var imgD = document.createElement("img"); 
+        //       imgD.src = "images/private.png"; 
+        //       var srcD = document.getElementById("responseD"); 
+        //       srcD.appendChild(imgD);
+        //       
+        //         var imgE = document.createElement("img"); 
+        //         imgE.src = "images/deleted.jpg"; 
+        //         var srcE = document.getElementById("responseE"); 
+        //         srcE.appendChild(imgE);
+        //       
+    } else if(userString === "history"){
+      // answer = "You're close!! You just need to write it with its right spelling:)";
+      // let almostThere = answer;
+      // responseA.innerHTML = almostThere;
+
+      getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams({label:"history"})}`)
+      .then(
         function (resultFromFetchB) {
           console.log(resultFromFetchB);
-          // let sRes =  resultFromFetchB;
-          // responseB.innerHTML = sRes;
-          var imgB = document.createElement("img"); 
-          imgB.src = "images/private.png"; 
-          var srcB = document.getElementById("responseB"); 
-          srcB.appendChild(imgB);
-           // Create anchor element. 
-           var b = document.createElement('a');  
-                  
-           // Create the text node for anchor element. 
-           var linkB = document.createTextNode("POP IT! FUNNY PRANKS ON FRIENDS || Crazy And Awesome Pranks by 123 GO!"); 
-             
-           // Append the text node to anchor element. 
-           b.appendChild(linkB);  
-             
-           // Set the title. 
-           b.title = "POP IT! FUNNY PRANKS ON FRIENDS || Crazy And Awesome Pranks by 123 GO!";  
-             
-           // Set the href property. 
-           b.href = "https://www.youtube.com/watch?v=VjWuclkaLOk";  
-             
-           // Append the anchor element to the body. 
-           srcB.appendChild(b);  
-          return  getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams()}`+resultFromFetchB.linkToNext)
-        })
-        .then(
-          function (resultFromFetchC) {
-            console.log(resultFromFetchC);
-            // let sRes =  resultFromFetchC;
-            // responseC.innerHTML = sRes;
-            var imgC = document.createElement("img"); 
-            imgC.src = "images/123go.jpg"; 
-            var srcC = document.getElementById("responseC"); 
-            srcC.appendChild(imgC);
-             // Create anchor element. 
-             var c = document.createElement('a');  
-                  
-             // Create the text node for anchor element. 
-             var linkC = document.createTextNode("FUNNY DRAWING CHALLENGE FOR 24 HOURS || DIY Painting Hacks! Easy Crazy Art At School By 123 GO! BOYS"); 
-               
-             // Append the text node to anchor element. 
-             c.appendChild(linkC);  
-               
-             // Set the title. 
-             c.title = "FUNNY DRAWING CHALLENGE FOR 24 HOURS || DIY Painting Hacks! Easy Crazy Art At School By 123 GO! BOYS";  
-               
-             // Set the href property. 
-             c.href = "https://www.youtube.com/watch?v=AIVrTmyhLjg&ab_channel=123GO%21TRENDS";  
-               
-             // Append the anchor element to the body. 
-             srcC.appendChild(c);  
-            return  getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams()}`+resultFromFetchC.linkToNext)
-          })
-          .then(
-            function (resultFromFetchD) {
-              console.log(resultFromFetchD);
-              // let sRes =  resultFromFetchD;
-              // responseD.innerHTML = sRes;
-              var imgD = document.createElement("img"); 
-              imgD.src = "images/private.png"; 
-              var srcD = document.getElementById("responseD"); 
-              srcD.appendChild(imgD);
-               // Create anchor element. 
-               var d = document.createElement('a');  
-                  
-               // Create the text node for anchor element. 
-               var linkD = document.createTextNode("POP IT! Lucky VS Unlucky! 100+ Best Challenges With Friends! Funny Dares by 123 GO! CHALLENGE"); 
-                 
-               // Append the text node to anchor element. 
-               d.appendChild(linkD);  
-                 
-               // Set the title. 
-               d.title = "POP IT! Lucky VS Unlucky! 100+ Best Challenges With Friends! Funny Dares by 123 GO! CHALLENGE";  
-                 
-               // Set the href property. 
-               d.href = "https://www.youtube.com/watch?v=KdY_gzsmHCE";  
-                 
-               // Append the anchor element to the body. 
-               srcD.appendChild(d);  
-              return  getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams()}`+resultFromFetchD.linkToNext)
-            })
-            .then(
-              function (resultFromFetchE) {
-                console.log(resultFromFetchE);
-                // let sRes =  resultFromFetchE;
-                // responseE.innerHTML = sRes;
-                var imgE = document.createElement("img"); 
-                imgE.src = "images/deleted.jpg"; 
-                var srcE = document.getElementById("responseE"); 
-                srcE.appendChild(imgE);
-                 // Create anchor element. 
-               var e = document.createElement('a');  
-                  
-               // Create the text node for anchor element. 
-               var linkE = document.createTextNode("Top 15 Arijit Singh 8D Songs | LATEST BOLLYWOOD | 8D Bollywood Songs"); 
-                 
-               // Append the text node to anchor element. 
-               e.appendChild(linkE);  
-                 
-               // Set the title. 
-               e.title = "Top 15 Arijit Singh 8D Songs | LATEST BOLLYWOOD | 8D Bollywood Songs";  
-                 
-               // Set the href property. 
-               e.href = "https://www.youtube.com/watch?v=PF8iM-jaJag";  
-                 
-               // Append the anchor element to the body. 
-               srcE.appendChild(e);  
-              })
-    } else if(userString === "paypal"){
-      answer = "You're close!! You just need to write it with its right spelling:)";
-      let almostThere = answer;
-      responseA.innerHTML = almostThere;
+          let sResB =  resultFromFetchB;
+          // responseA.innerHTML = sRes;
+          for(let i=0; i<sResB.length;i++){
 
-    } else {
+          
+          // var imgA = document.createElement("img"); 
+          // imgA.src = "images/pop.jpg"; 
+          var srcB = document.getElementById("responseA"); 
+          // srcA.appendChild(imgA);
+               // Create anchor element. 
+               var b_n = document.createElement('a');  
+                  
+               // Create the text node for anchor element. 
+               var linkB_n = document.createTextNode(sResB[i].link); 
+                 
+               // Append the text node to anchor element. 
+               b_n.appendChild(linkB_n); 
+               srcB.appendChild(b_n);   
+
+               var YTtitleB = document.createElement('p');  
+               // Set the title. 
+               YTtitleB.innerHTML = sResB[i].title;  
+               srcB.appendChild(YTtitleB);   
+               
+               
+               var YTdescriptionB = document.createElement('p');  
+               // Set the title. 
+               YTdescriptionB.innerHTML = sResB[i].description;  
+               srcB.appendChild(YTdescriptionB);   
+
+    }}) }
+    else if(userString === "food"){
+      // answer = "You're close!! You just need to write it with its right spelling:)";
+      // let almostThere = answer;
+      // responseA.innerHTML = almostThere;
+
+      getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams({label:"food"})}`)
+      .then(
+        function (resultFromFetchC) {
+          console.log(resultFromFetchC);
+          let sResC =  resultFromFetchC;
+          for(let i=0; i<sResC.length;i++){
+
+          
+          // var imgA = document.createElement("img"); 
+          // imgA.src = "images/pop.jpg"; 
+          var srcC = document.getElementById("responseA"); 
+          // srcA.appendChild(imgA);
+               // Create anchor element. 
+              //  var c_n = document.createElement('a');  
+                  
+              //  // Create the text node for anchor element. 
+              //  var linkC_n = document.createTextNode(srcC[i].link); 
+                 
+              //  // Append the text node to anchor element. 
+              //  c_n.appendChild(linkC_n); 
+              //  srcC.appendChild(c_n);   
+
+               var YTtitleC = document.createElement('p');  
+               // Set the title. 
+               YTtitleC.innerHTML = sResC[i].title;  
+               srcC.appendChild(YTtitleC);   
+               
+               
+               var YTdescriptionC = document.createElement('p');  
+               // Set the title. 
+               YTdescriptionC.innerHTML = sResC[i].description;  
+               srcC.appendChild(YTdescriptionC);   
+
+    }}) }
+    else if(userString === "travel"){
+      // answer = "You're close!! You just need to write it with its right spelling:)";
+      // let almostThere = answer;
+      // responseA.innerHTML = almostThere;
+
+      getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams({label:"travel"})}`)
+      .then(
+        function (resultFromFetchD) {
+          console.log(resultFromFetchD);
+          let sResD =  resultFromFetchD;
+          // responseA.innerHTML = sRes;
+          for(let i=0; i<sResD.length;i++){
+
+          
+          // var imgA = document.createElement("img"); 
+          // imgA.src = "images/pop.jpg"; 
+          var srcD = document.getElementById("responseA"); 
+          // srcA.appendChild(imgA);
+               // Create anchor element. 
+               var d_n = document.createElement('a');  
+                  
+               // Create the text node for anchor element. 
+               var linkD_n = document.createTextNode(sResD[i].link); 
+                 
+               // Append the text node to anchor element. 
+               d_n.appendChild(linkD_n); 
+               srcD.appendChild(d_n);   
+
+               var YTtitleD = document.createElement('p');  
+               // Set the title. 
+               YTtitleD.innerHTML = sResD[i].title;  
+               srcD.appendChild(YTtitleD);   
+               
+               
+               var YTdescriptionD = document.createElement('p');  
+               // Set the title. 
+               YTdescriptionD.innerHTML = sResD[i].description;  
+               srcD.appendChild(YTdescriptionD);   
+
+    }}) }
+    else {
       answer = "Wrong answer, try again";
     let wrongAnswer = answer;
     responseA.innerHTML = wrongAnswer;
@@ -185,21 +219,13 @@ function checkAuth_A(userString) {
   }, 2000); // let 5 secs go past then send back
 }
 
-function changeString_A(fruitString) {
+function changeString_A(searchString) {
   //console.log(userString);
   setTimeout(() => {
-    let userFruitwithstars = fruitString.split("").join("*");
-    console.log("time-out two-a complete " + fruitString);
+    let userSearch = searchString.split("").join("*");
+    console.log("time-out two-a complete " + searchString);
     return answer;
   }, 2000); // let 5 secs go past then send back
 }
-
- // format json object - helper :)
-// function formatJSObj(data) {
-//   return `
-//         ${data.title}
-//          <br />
-//          Description: ${data.description} <br /> `;
-// } 
 }
 

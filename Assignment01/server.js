@@ -28,6 +28,12 @@ async function run() {
       let getSearchCrit = async function (req, res) {
         console.log(req.query);
         // MUST set up an index
+       
+       if(req.query.label==="art"){
+
+console.log("art");
+
+       
         let r = await videos.createIndex({ category: 1 });
         let search = await videos.createIndex({ description: 1 });
         let s = await videos.createIndex({ title: 1 });
@@ -41,10 +47,71 @@ async function run() {
                 description:1,
               },}
           ]).toArray();
-      
-       res.send(responseArt);
+          res.send(responseArt);
+        }
+       else if(req.query.label==="history"){
+
+          console.log("history");
           
-      };
+                 
+                  let r = await videos.createIndex({ category: 1 });
+                  let search = await videos.createIndex({ description: 1 });
+                  let s = await videos.createIndex({ title: 1 });
+                    let responseHist = await videos.aggregate([
+                      {$match: {category: "history", description: {$lte:"900"}}},
+                        {$sort:{description:1}},
+                        {$project:{
+                          _id:0,
+                          link:1,
+                          title:1,
+                          description:1,
+                        },}
+                    ]).toArray();
+                    res.send(responseHist);
+                  }
+          
+      else if(req.query.label==="food"){
+
+        console.log("hello");
+        
+               
+                let r = await videos.createIndex({ category: 1 });
+                let search = await videos.createIndex({ description: 1 });
+                let s = await videos.createIndex({ title: 1 });
+                  let responseFood = await videos.aggregate([
+                    {$match: {category: "food", description: {$lte:"900"}}},
+                      {$sort:{description:1}},
+                      {$project:{
+                        _id:0,
+                        link:1,
+                        title:1,
+                        description:1,
+                      },}
+                  ]).toArray();
+                  res.send(responseFood);
+                }
+                else if(req.query.label==="travel"){
+
+                  console.log("hello");
+                  
+                         
+                          let r = await videos.createIndex({ category: 1 });
+                          let search = await videos.createIndex({ description: 1 });
+                          let s = await videos.createIndex({ title: 1 });
+                            let responseTravel = await videos.aggregate([
+                              {$match: {category: "travel", description: {$lte:"900"}}},
+                                {$sort:{description:1}},
+                                {$project:{
+                                  _id:0,
+                                  link:1,
+                                  title:1,
+                                  description:1,
+                                },}
+                            ]).toArray();
+                            res.send(responseTravel);
+                          }
+    }
+
 
       //3:: receiving serach criteria from the client
       app.use("/sendSearch", getSearchCrit);
