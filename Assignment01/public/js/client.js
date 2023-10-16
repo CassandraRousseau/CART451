@@ -40,7 +40,6 @@ function checkAuth_A(userString) {
               'images/private.png',
               'images/deleted.jpg'
                       ];
-               
                       imgA.forEach(image => {
                           const img = document.createElement('img');
                           img.src = image;
