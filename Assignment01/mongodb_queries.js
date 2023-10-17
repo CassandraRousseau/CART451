@@ -75,7 +75,6 @@ console.log(answer)
 ];
 
 let filteredResults = await videos.aggregate(pipeline)
-//   let filteredResults = await videos.aggregate(pipeline)
 for await (const doc of filteredResults){
 console.log(doc);
 console.log("art achieved");
@@ -100,7 +99,6 @@ catch (error) {
     console.error("error::");
     console.log(error);
     // Expected output: ReferenceError: nonExistentFunction is not defined
-    // (Note: the exact output may be browser-dependent)
   }
  /* The finally block will always execute before control flow exits the try...catch...finally construct. 
  It always executes, regardless of whether an exception was thrown or caught.*/

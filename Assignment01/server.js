@@ -19,16 +19,16 @@ const client = new MongoClient(uri, {});
 
 async function run() {
   try {
-
+// Connnect my MongoDB profile and its collections
     client.connect().then((res) => {
     const db =  client.db("CART451_Final_Project");
     const videos =  db.collection("youtube_videos", {
       collation: { locale: "fr_CA",  numericOrdering: true,},});
-     
+    //  Create the search engine
       let getSearchCrit = async function (req, res) {
         console.log(req.query);
-        // MUST set up an index
-       
+      
+      // Make the results for the art category 
         if(req.query.label==="art"){
 
           console.log("hello");
@@ -48,6 +48,7 @@ async function run() {
                     ]).toArray();
                     res.send(responseArt);
                   }
+                  // Make the results for the history category
        else if(req.query.label==="history"){
 
           console.log("history");
@@ -67,7 +68,7 @@ async function run() {
                     ]).toArray();
                     res.send(responseHist);
                   }
-          
+          // Make the results for the food category
       else if(req.query.label==="food"){
 
         console.log("hello");
@@ -88,6 +89,7 @@ async function run() {
                   ]).toArray();
                   res.send(responseFood);
                 }
+                // Make the results for the food category
                 else if(req.query.label==="travel"){
 
                   console.log("hello");
@@ -120,7 +122,6 @@ catch (error) {
     console.error("error::");
     console.log(error);
     // Expected output: ReferenceError: nonExistentFunction is not defined
-    // (Note: the exact output may be browser-dependent)
   }
  /* The finally block will always execute before control flow exits the try...catch...finally construct. 
  It always executes, regardless of whether an exception was thrown or caught.*/
