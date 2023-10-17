@@ -29,26 +29,25 @@ async function run() {
         console.log(req.query);
         // MUST set up an index
        
-       if(req.query.label==="art"){
+        if(req.query.label==="art"){
 
-console.log("art");
-
-       
-        let r = await videos.createIndex({ category: 1 });
-        let search = await videos.createIndex({ description: 1 });
-        let s = await videos.createIndex({ title: 1 });
-          let responseArt = await videos.aggregate([
-            {$match: {category: "art_music", description: {$lte:"400"}}},
-              {$sort:{description:1}},
-              {$project:{
-                _id:0,
-                link:1,
-                title:1,
-                description:1,
-              },}
-          ]).toArray();
-          res.send(responseArt);
-        }
+          console.log("hello");
+                 
+                  let r = await videos.createIndex({ category: 1 });
+                  let search = await videos.createIndex({ description: 1 });
+                  let s = await videos.createIndex({ title: 1 });
+                    let responseArt = await videos.aggregate([
+                      {$match: {category: "art_music", description: {$lte:"400"}}},
+                        {$sort:{description:1}},
+                        {$project:{
+                          _id:0,
+                          link:1,
+                          title:1,
+                          description:1,
+                        },}
+                    ]).toArray();
+                    res.send(responseArt);
+                  }
        else if(req.query.label==="history"){
 
           console.log("history");
@@ -61,7 +60,6 @@ console.log("art");
                       {$match: {category: "history", description: {$lte:"900"}}},
                         {$sort:{description:1}},
                         {$project:{
-                          _id:0,
                           link:1,
                           title:1,
                           description:1,

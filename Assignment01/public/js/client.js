@@ -20,12 +20,13 @@ window.onload = function () {
     );
     changeString_A(returnedSearch);
     });
-  
+   
 
 function checkAuth_A(userString) {
   setTimeout(() => {
     let answer = "";
-    if (userString === "art") {
+if(userString === "art"){
+
       getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams({label:"art"})}`)
       .then(
         function (resultFromFetchA) {
@@ -40,35 +41,41 @@ function checkAuth_A(userString) {
               'images/private.png',
               'images/deleted.jpg'
                       ];
+               
                       imgA.forEach(image => {
                           const img = document.createElement('img');
                           img.src = image;
                           img.innerHTML = imgA[i];  
                           srcA.appendChild(img);
-                               //  // Create anchor element. 
-               var a_n = document.createElement('a');  
+                                //  var d_n = document.createElement('a');  
                   
-               //  // Create the text node for anchor element. 
-                var linkA = document.createTextNode(srcA[i].link); 
-                  
-               //  // Append the text node to anchor element. 
-               a_n.appendChild(linkA); 
-               srcA.appendChild(a_n);   
-                          var YTtitleA = document.createElement('p');  
-                          // Set the title. 
-                          YTtitleA.innerHTML = sResA[i].title;  
-                          srcA.appendChild(YTtitleA);   
-                               
+              //  // Create the text node for anchor element. 
+              //  var linkD_n = document.createTextNode(sResD[i].link); 
+                 
+              //  // Append the text node to anchor element. 
+              //  d_n.appendChild(linkD_n); 
+              //  srcD.appendChild(d_n);   
+              var linkA = document.createElement('p');  
+              // Set the title. 
+              linkA.innerHTML = sResA[i].link;  
+              srcA.appendChild(linkA); 
+
+               var YTtitleA = document.createElement('p');  
+               // Set the title. 
+               YTtitleA.innerHTML = sResA[i].title;  
+               srcA.appendChild(YTtitleA);   
+               
+               
                var YTdescriptionA = document.createElement('p');  
                // Set the title. 
                YTdescriptionA.innerHTML = sResA[i].description;  
-               srcA.appendChild(YTdescriptionA);  
-             
-
+               srcA.appendChild(YTdescriptionA);   
                       })
-      
-    }
-  }) }else if(userString === "history"){
+          
+            
+
+    }}) }
+  else if(userString === "history"){
    
       getJSONFromServerUsingFetch(`http://localhost:4200/sendSearch?${new URLSearchParams({label:"history"})}`)
       .then(
@@ -82,15 +89,6 @@ function checkAuth_A(userString) {
           var srcB = document.getElementById("responseA"); 
           srcB.appendChild(imgB);
                   
-              //  // Create anchor element. 
-              //  var b_n = document.createElement('a');  
-                  
-              //  // Create the text node for anchor element. 
-              //  var linkB_n = document.createTextNode(sResB[i].link); 
-                 
-              //  // Append the text node to anchor element. 
-              //  b_n.appendChild(linkB_n); 
-              //  srcB.appendChild(b_n);   
               var linkB = document.createElement('p');  
               // Set the title. 
               linkB.innerHTML = sResB[i].link;  
@@ -128,15 +126,6 @@ function checkAuth_A(userString) {
                           img.src = image;
                           img.innerHTML = imgC[i];  
                           srcC.appendChild(img);
-                            //  // Create anchor element. 
-              //  var c_n = document.createElement('a');  
-                  
-              //  // Create the text node for anchor element. 
-              //  var linkC_n = document.createTextNode(srcC[i].link); 
-                 
-              //  // Append the text node to anchor element. 
-              //  c_n.appendChild(linkC_n); 
-              //  srcC.appendChild(c_n);   
               var linkC = document.createElement('p');  
               // Set the title. 
               linkC.innerHTML = sResC[i].link;  
@@ -178,14 +167,7 @@ function checkAuth_A(userString) {
                           img.innerHTML = imgD[i];  
                           srcD.appendChild(img);
                           //  // Create anchor element. 
-              //  var d_n = document.createElement('a');  
-                  
-              //  // Create the text node for anchor element. 
-              //  var linkD_n = document.createTextNode(sResD[i].link); 
-                 
-              //  // Append the text node to anchor element. 
-              //  d_n.appendChild(linkD_n); 
-              //  srcD.appendChild(d_n);   
+        
 
               var linkD = document.createElement('p');  
               // Set the title. 
